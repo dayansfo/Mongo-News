@@ -1,5 +1,21 @@
-# Scraping with Mongoose
+# Mongo-News
 
-## Instructions
+## Overview
+An app that scrapes articles from the New York Times website and lets users save articles and leave comments on the latest news.
 
-* Open `server.js` and complete the empty routes for accessing all articles, accessing a specific article, and for saving a new article.
+## How It Works
+Scrape articles by clicking the "Scrape New Articles" button.
+Comments can be added on saved articles by clicking the "Add a Note" button.
+Check out the App
+
+## Technologies Used
+Node.js
+Express.js
+MongoDB
+Mongoose
+npm packages
+body-parser
+express
+mongoose
+cheerio
+request
