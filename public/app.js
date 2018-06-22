@@ -22,7 +22,8 @@ $(document).on("click", "p", function() {
   })
     // With that done, add the note information to the page
     .then(function(data) {
-      console.log(data);
+      // console.log("HERERERERERER")
+      // console.log(data.note);
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
@@ -31,14 +32,17 @@ $(document).on("click", "p", function() {
       $("#notes").append("<textarea id='bodyinput' name='body' placeholder='add your notes'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-
+      // console.log(data.note)
       // If there's a note in the article
-      if (data.note) {
+      data.note.forEach(note =>  {
         // Place the title of the note in the title input
-        $("#titleinput").val(data.note.title);
+        // console.log(note.title)
+        var title = note.title
         // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
-      }
+        var body = note.body
+        $("#notes").append(`<p>${title}: ${body}</p>`);
+
+      });
     });
 });
 
@@ -61,9 +65,21 @@ $(document).on("click", "#savenote", function() {
     // With that done
     .then(function(data) {
       // Log the response
-      console.log(data);
+      console.log(data.note);
+
       // Empty the notes section
-      $("#notes").empty();
+      // $("#notes").empty();
+      // if (data.note) {
+        data.note.forEach(note => {
+          $("#titleinput").val(note.title);
+        // Place the body of the note in the body textarea
+          $("#bodyinput").val(note.body);
+        })
+        // Place the title of the note in the title input
+        // $("#titleinput").val(data.note.title);
+        // // Place the body of the note in the body textarea
+        // $("#bodyinput").val(data.note.body);
+      // }
     });
 
   // Also, remove the values entered in the input and textarea for note entry
